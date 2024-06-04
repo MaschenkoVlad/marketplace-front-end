@@ -7,19 +7,15 @@
         "jsx": "react-jsx",
         "allowJs": true,
         "moduleResolution": "Node",
-        // Если библиотека не имеет default import 
-        // лоадеры автоматически создают их
-        // вмето такого импорта 
-        // import * as React from 'react'
-        // можно писать такой код 
-         // import React from 'react'
         "allowSyntheticDefaultImports": true,
-        // позволяет работать с пакетами которые используют 
-        // common js как с обычными пакетамис  помощью import 
-        // import Moment from 'moment'
-        // без флага esModuleInterop результат undefined
         "esModuleInterop": true,
-        "baseUrl": "./",
+        "noUnusedLocals": true, 
+        "noUnusedParameters": true,
+        "pretty": true,
+        "removeComments": true,
+        "strict": true,
+        "allowUnreachableCode": true,
+        "baseUrl": ".", // ./ for alias???
         "paths": {
             "@buttons/*": ["src/components/buttons/*"],
           }
