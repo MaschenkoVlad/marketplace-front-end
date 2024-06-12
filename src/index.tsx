@@ -9,3 +9,5 @@ const sayHelloLinting = (fName: string) => {
 };
 
 sayHelloLinting("James");
+
+console.log("test commit message");
