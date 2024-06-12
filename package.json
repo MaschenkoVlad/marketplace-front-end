@@ -68,6 +68,10 @@
     "react-router-dom": "^6.23.1"
   },
   "lint-staged": {
+    "**/*": [
+      "yarn format:fix",
+      "yarn lint:fix"
+    ],
     "**/*.{css,scss}": "yarn style:lint:fix"
   }
 }
