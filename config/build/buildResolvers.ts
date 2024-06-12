@@ -1,8 +1,8 @@
 import { Configuration } from "webpack";
 
-export function buildResolvers(): Configuration['resolve'] {
-    return {
-        extensions: ['.tsx', '.ts', '.js'],
-        alias: {}
-    };
+export function buildResolvers(): Configuration["resolve"] {
+  return {
+    extensions: [".tsx", ".ts", ".js"],
+    alias: {},
+  };
 }
