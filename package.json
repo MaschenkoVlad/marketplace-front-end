@@ -12,7 +12,6 @@
     "dev": "webpack --env mode=development",
     "format:fix": "prettier . --write",
     "format:check": "prettier . --check",
-    "postinstall": "husky",
     "prepare": "husky install",
     "lint:check": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "lint:fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix"
