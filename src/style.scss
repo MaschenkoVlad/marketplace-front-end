@@ -1,0 +1,9 @@
+.test {
+  color: #eee;
+  border: 1px solid #fff;
+  background-color: #c2c;
+
+  & span {
+    font-size: 25rem;
+  }
+}
