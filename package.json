@@ -14,7 +14,9 @@
     "format:check": "prettier . --check",
     "prepare": "husky install",
     "lint:check": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
-    "lint:fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix"
+    "lint:fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix",
+    "style:lint": "stylelint \"**/*.{css,scss}\"",
+    "style:lint:fix": "stylelint \"**/*.{css,scss}\" --fix"
   },
   "devDependencies": {
     "@babel/core": "^7.24.6",
@@ -52,6 +54,8 @@
     "sass": "^1.77.4",
     "sass-loader": "^14.2.1",
     "style-loader": "^4.0.0",
+    "stylelint": "^16.6.1",
+    "stylelint-config-standard-scss": "^13.1.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5",
     "typescript-eslint": "^7.12.0",
@@ -66,7 +70,8 @@
   "lint-staged": {
     "**/*": [
       "yarn format:fix",
-      "yarn lint:fix"
+      "yarn lint:fix",
+      "yarn style:lint:fix"
     ]
   }
 }
