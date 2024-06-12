@@ -70,8 +70,8 @@
   "lint-staged": {
     "**/*": [
       "yarn format:fix",
-      "yarn lint:fix",
-      "yarn style:lint:fix"
-    ]
+      "yarn lint:fix"
+    ],
+    "**/*.{css,scss}": "yarn style:lint:fix"
   }
 }
