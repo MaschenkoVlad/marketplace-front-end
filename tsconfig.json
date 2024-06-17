@@ -17,7 +17,7 @@
     "allowUnreachableCode": true,
     "baseUrl": ".", // ./ for alias???
     "paths": {
-      "@buttons/*": ["src/components/buttons/*"]
+      "@pages/*": ["src/pages/*"]
     }
   },
   "ts-node": {

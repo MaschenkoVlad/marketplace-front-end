@@ -15,6 +15,7 @@ export default (env: IEnvVariables) => {
     entry: path.resolve(__dirname, "src", "index.tsx"),
     html: path.resolve(__dirname, "public", "index.html"),
     public: path.resolve(__dirname, "public"),
+    pagesPath: path.resolve(__dirname, "src/pages"),
   };
 
   // const aliasPaths: IAliasPaths = {};
