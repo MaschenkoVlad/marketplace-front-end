@@ -55,6 +55,7 @@
     "sass-loader": "^14.2.1",
     "style-loader": "^4.0.0",
     "stylelint": "^16.6.1",
+    "stylelint-config-recess-order": "^5.0.1",
     "stylelint-config-standard-scss": "^13.1.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5",

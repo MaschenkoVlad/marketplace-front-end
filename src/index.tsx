@@ -1,13 +1,14 @@
-const name_a = "James";
+import ReactDOM from "react-dom/client";
+import { RouterProvider } from "react-router-dom";
 
-const person = { first: name_a };
+import { routers } from "./app/providers/router";
 
-console.log(person);
-
-const sayHelloLinting = (fName: string) => {
-  console.log(`Hello linting ${fName}`);
+const App = () => {
+  return <RouterProvider router={routers} />;
 };
 
-sayHelloLinting("James");
+document.body.innerHTML = '<div id="root"></div>';
 
-console.log("test commit message");
+const rootElement: HTMLElement = document.getElementById("root") as HTMLElement;
+
+ReactDOM.createRoot(rootElement).render(<App />);

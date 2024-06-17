@@ -16,6 +16,7 @@ export function buildWebpack(options: IBuildOptions): webpack.Configuration {
       path: paths.output,
       filename: "bundle.[contenthash].js",
       clean: true,
+      publicPath: "/",
     },
     mode: mode,
     module: {
@@ -23,7 +24,7 @@ export function buildWebpack(options: IBuildOptions): webpack.Configuration {
     },
     plugins: buildPlugins(mode, paths),
     devServer: isDev ? buildDevServer(port, isDev) : undefined,
-    resolve: buildResolvers(),
+    resolve: buildResolvers(paths),
     devtool: isDev ? "eval-cheap-module-source-map" : "source-map",
   };
 }
