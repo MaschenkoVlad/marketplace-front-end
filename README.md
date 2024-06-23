@@ -6,4 +6,4 @@ If you use ESLint, make sure lint-staged runs it before Prettier, not after.
 
 TODO: fix eslint config issues, eslint + webpack + prettier
 TODO: lint commits messages
-TODO: investigate lint-staged package
+TODO: do we need to use babel configuration with webpack babel loader?

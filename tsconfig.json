@@ -15,7 +15,7 @@
     "removeComments": true,
     "strict": true,
     "allowUnreachableCode": true,
-    "baseUrl": ".", // ./ for alias???
+    "baseUrl": ".",
     "paths": {
       "@pages/*": ["src/pages/*"]
     }
