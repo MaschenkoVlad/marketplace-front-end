@@ -72,13 +72,8 @@ export const routers = createBrowserRouter([
     ],
   },
   {
-    path: "auth",
     element: <AuthPage />,
     children: [
-      {
-        index: true,
-        element: <div>????</div>,
-      },
       {
         path: "sign-in",
         element: <SignInPage />,
