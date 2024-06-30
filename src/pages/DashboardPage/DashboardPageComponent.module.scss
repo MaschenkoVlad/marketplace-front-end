@@ -1,3 +1,8 @@
 .root {
-  width: 100%;
+  display: grid;
+  grid-template: "header header" 60px "sidebar main" 1fr / 25% 1fr;
+}
+
+.mainContent {
+  grid-area: main;
 }

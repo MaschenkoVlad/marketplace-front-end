@@ -40,6 +40,7 @@ export function buildLoaders(mode: BuildMode): ModuleOptions["rules"] {
         loader: "css-loader",
         options: {
           modules: {
+            auto: (resPath: string) => Boolean(resPath.includes(".module.")),
             localIdentName: isDev ? "[path][name]__[local]" : "[hash:base64:8]",
           },
         },
