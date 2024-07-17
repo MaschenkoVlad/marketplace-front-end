@@ -1,4 +1,9 @@
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import yup from "yup";
+
+import InputField from "src/shared/ui/Input";
+import { memo } from "react";
 
 type Inputs = {
   firstName: string;
@@ -9,41 +14,46 @@ type Inputs = {
   phoneNumber: string;
 };
 
-const EMAIL_PATTERN =
-  /^(?![_.-])((?![_.-][_.-])[a-zA-Zd_.-]){0,63}[a-zA-Zd]@((?!-)((?!--)[a-zA-Zd-]){0,63}[a-zA-Zd].){1,2}([a-zA-Z]{2,14}.)?[a-zA-Z]{2,14}$/;
+const PHONE_NUMBER_PATTERN = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/;
 
-const SignUpForm = () => {
+const schema = yup
+  .object({
+    firstName: yup.string().required(),
+    lastName: yup.string().required(),
+    password: yup.string().min(8, "Must be exactly 8 digits").required(),
+    confirmPassword: yup.string().required(),
+    email: yup.string().email().required(),
+    phoneNumber: yup.string().matches(PHONE_NUMBER_PATTERN, "Phone number is not valid").required(),
+  })
+  .required();
+
+const SignUpForm = memo(() => {
+  const methods = useForm<Inputs>({ resolver: yupResolver(schema) });
   const {
-    register,
     handleSubmit,
-    watch,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = methods;
+
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
-  console.log(watch("firstName")); // watch input value by passing the name of it
-
   return (
-    <div>
+    <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input {...register("firstName", { required: true })} />
-        <input {...register("lastName", { required: true })} />
-        <input
-          {...register("email", {
-            required: true,
-            pattern: EMAIL_PATTERN,
-          })}
-        />
-        <input {...register("phoneNumber")} />
-        <input {...register("password", { required: true, minLength: 8 })} />
-        <input {...register("confirmPassword", { required: true })} />
+        <div>
+          <InputField name="firstName" error={errors.firstName} />
+          <InputField name="lastName" error={errors.lastName} />
+        </div>
 
-        {errors.email && <span>This field is required</span>}
+        <InputField name="email" error={errors.email} />
 
-        <input type="submit" />
+        <InputField name="phoneNumber" error={errors.phoneNumber} />
+        <InputField name="password" error={errors.password} />
+        <InputField name="confirmPassword" error={errors.confirmPassword} />
+
+        <button type="submit">Submit</button>
       </form>
-    </div>
+    </FormProvider>
   );
-};
+});
 
 export default SignUpForm;
