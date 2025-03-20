@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import yup from "yup";
 
@@ -9,7 +10,7 @@ type Inputs = {
   password: string;
 };
 
-const schema = yup
+const validationSchema = yup
   .object({
     email: yup.string().email().required(),
     password: yup.string().required(),
@@ -17,13 +18,17 @@ const schema = yup
   .required();
 
 const SignInForm = () => {
-  const methods = useForm<Inputs>({ resolver: yupResolver(schema) });
+  const [disabled, setDisabled] = useState(false);
+  const methods = useForm<Inputs>({ resolver: yupResolver(validationSchema), criteriaMode: "all", disabled });
   const {
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = methods;
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    setDisabled(true);
+    console.log(data, isValid);
+  };
 
   return (
     <FormProvider {...methods}>

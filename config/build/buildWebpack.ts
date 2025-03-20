@@ -20,10 +20,10 @@ export function buildWebpack(options: IBuildOptions): webpack.Configuration {
     },
     mode: mode,
     module: {
-      rules: buildLoaders(mode),
+      rules: buildLoaders(isDev),
     },
-    plugins: buildPlugins(mode, paths),
-    devServer: isDev ? buildDevServer(port, isDev) : undefined,
+    plugins: buildPlugins(isDev, paths),
+    devServer: isDev ? buildDevServer(port) : undefined,
     resolve: buildResolvers(paths),
     devtool: isDev ? "eval-cheap-module-source-map" : "source-map",
   };

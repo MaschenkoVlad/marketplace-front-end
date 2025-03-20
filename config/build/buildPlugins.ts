@@ -7,14 +7,14 @@ import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 // import ESLintPlugin from 'eslint-webpack-plugin';
 // import CopyPlugin from "copy-webpack-plugin";
 
-import { BuildMode, IBuildPath } from "./types";
+import { IBuildPath } from "./types";
 import path from "path";
 
-export function buildPlugins(mode: BuildMode, paths: IBuildPath): Configuration["plugins"] {
-  const isDev = mode === "development";
+export function buildPlugins(isDev: boolean, paths: IBuildPath): Configuration["plugins"] {
+  const { html, public: publicPath } = paths;
 
   const plugins: Configuration["plugins"] = [
-    new HtmlWebpackPlugin({ template: paths.html, favicon: path.resolve(paths.public, "marketplace_favicon.ico") }),
+    new HtmlWebpackPlugin({ template: html, favicon: path.resolve(publicPath, "marketplace_favicon.ico") }),
     new DefinePlugin({
       __IS_DEV__: JSON.stringify(isDev),
     }),

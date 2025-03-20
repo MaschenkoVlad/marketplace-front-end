@@ -1,9 +1,9 @@
+import { memo, useState } from "react";
 import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import yup from "yup";
 
 import InputField from "src/shared/ui/Input";
-import { memo } from "react";
 
 type Inputs = {
   firstName: string;
@@ -16,7 +16,7 @@ type Inputs = {
 
 const PHONE_NUMBER_PATTERN = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/;
 
-const schema = yup
+const validationSchema = yup
   .object({
     firstName: yup.string().required(),
     lastName: yup.string().required(),
@@ -28,13 +28,17 @@ const schema = yup
   .required();
 
 const SignUpForm = memo(() => {
-  const methods = useForm<Inputs>({ resolver: yupResolver(schema) });
+  const [disabled, setDisabled] = useState(false);
+  const methods = useForm<Inputs>({ resolver: yupResolver(validationSchema), criteriaMode: "all", disabled });
   const {
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = methods;
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    setDisabled(true);
+    console.log(data, isValid);
+  };
 
   return (
     <FormProvider {...methods}>
