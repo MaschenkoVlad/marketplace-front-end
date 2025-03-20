@@ -1,10 +1,7 @@
 import { ModuleOptions } from "webpack";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import { BuildMode } from "./types";
 
-export function buildLoaders(mode: BuildMode): ModuleOptions["rules"] {
-  const isDev = mode === "development";
-
+export function buildLoaders(isDev: boolean): ModuleOptions["rules"] {
   const imageLoader = {
     test: /\.(png|jpg|jpeg|gif)$/i,
     type: "asset/resource",
@@ -71,3 +68,5 @@ export function buildLoaders(mode: BuildMode): ModuleOptions["rules"] {
 
   return [imageLoader, cssLoader, babelLoader, svgLoader];
 }
+
+// REVIEW: explore this file!

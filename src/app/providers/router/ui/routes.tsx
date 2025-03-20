@@ -60,7 +60,7 @@ export const routers = createBrowserRouter([
         element: <MyListingsPage />,
         children: [
           {
-            path: "slug/:id",
+            path: "/:slug/:id",
             element: <div>Child</div>,
           },
         ],
